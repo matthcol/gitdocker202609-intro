@@ -33,4 +33,27 @@ docker exec -it pgdbmovie bash
     # postgres      74       1  0 12:52 ?        00:00:00 postgres: logical replication launcher 
     # root          81       0  0 12:56 pts/0    00:00:00 bash
     # root          90      81  0 12:56 pts/0    00:00:00 ps -aef
+
+docker stop pgdbmovie
+docker rm pgdbmovie
+
+docker run --name pgdbmovie -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres:18
+
+cd pgdbmovie
+docker compose up -d
+docker compose ps -a
+docker compose stop
+docker compose start
+docker compose logs
+docker compose down
+
+docker volume ls
+```
+
+# App Python
+
+```shell
+cd apppython
+docker build -t apppython:1.1 .
+docker run --rm -t apppython:1.1
 ```

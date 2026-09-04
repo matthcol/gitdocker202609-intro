@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_USER: umovie
+      POSTGRES_DB: dbmovie
+    ports:
+      - 5432:5432
+    volumes:
+      - ./sql-init:/docker-entrypoint-initdb.d
+      - dbstorage:/var/lib/postgresql/18/docker
+
+volumes:
+  dbstorage:
